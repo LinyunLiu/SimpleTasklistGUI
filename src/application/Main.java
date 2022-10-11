@@ -13,9 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
-	private String background3 = "/Users/yunliu/MyApplications/Task/src/background3.jpg";
+	private String background3 = "./src/sources/background3.jpg";
 	public void start(Stage primaryStage) throws FileNotFoundException {
-		Image icon = new Image(new FileInputStream("/Users/yunliu/MyApplications/Task/icon.png"));
+		Image icon = new Image(new FileInputStream("./src/sources/icon.png"));
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("RemindersApp.fxml"));
 			Scene scene = new Scene(root,1080,720);
