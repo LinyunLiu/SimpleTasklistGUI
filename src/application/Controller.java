@@ -3,7 +3,6 @@
 
 package application;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -54,15 +53,15 @@ public class Controller {
 	private Spinner<String> spinnerA, spinnerB;
 	private Spinner<String> spinnerC;
 
-	private String fileName = "/Users/yunliu/MyApplications/Task/src/task.txt";
+	private String fileName = "./src/resouces/task.txt";
 	private File file = new File(fileName);
-	private File sound1 = new File("/Users/yunliu/MyApplications/Task/src/Bottle Cork.wav");
-	private File sound2 = new File("/Users/yunliu/MyApplications/Task/src/Dit Hit.wav");
-	private File sound3 = new File("/Users/yunliu/MyApplications/Task/src/Whistle.wav");
-	private File sound4 = new File("/Users/yunliu/MyApplications/Task/src/Empty Trash.wav");
-	private File sound5 = new File("/Users/yunliu/MyApplications/Task/src/Check.wav");
-	private String background1 = "/Users/yunliu/MyApplications/Task/src/background1.jpg";
-	private String background2 = "/Users/yunliu/MyApplications/Task/src/background2.jpg";
+	private File sound1 = new File("./src/resouces/Bottle Cork.wav");
+	private File sound2 = new File("./src/resouces/Dit Hit.wav");
+	private File sound3 = new File("./src/resouces/Whistle.wav");
+	private File sound4 = new File("./src/resouces/Empty Trash.wav");
+	private File sound5 = new File("./src/resouces/Check.wav");
+	private String background1 = "./src/resouces/background1.jpg";
+	private String background2 = "./src/resouces/background2.jpg";
 	
 	@FXML
     private Button ButtonDelete;
