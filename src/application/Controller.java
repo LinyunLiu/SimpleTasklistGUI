@@ -45,28 +45,28 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Controller {
-	private String strName;
-	private String  strDetails;
-	private String priorityLevel;
-	private LocalDate date = LocalDate.now();
-	private ArrayList<Task> taskList = new ArrayList<Task>(); 
-	private Spinner<String> spinnerA, spinnerB;
-	private Spinner<String> spinnerC;
+   private String strName;
+   private String  strDetails;
+   private String priorityLevel;
+   private LocalDate date = LocalDate.now();
+   private ArrayList<Task> taskList = new ArrayList<Task>(); 
+   private Spinner<String> spinnerA, spinnerB;
+   private Spinner<String> spinnerC;
 
-	private String fileName = "./src/resouces/task.txt";
-	private File file = new File(fileName);
-	private File sound1 = new File("./src/resouces/Bottle Cork.wav");
-	private File sound2 = new File("./src/resouces/Dit Hit.wav");
-	private File sound3 = new File("./src/resouces/Whistle.wav");
-	private File sound4 = new File("./src/resouces/Empty Trash.wav");
-	private File sound5 = new File("./src/resouces/Check.wav");
-	private String background1 = "./src/resouces/background1.jpg";
-	private String background2 = "./src/resouces/background2.jpg";
+   private String fileName = "./src/resouces/task.txt";
+   private File file = new File(fileName);
+   private File sound1 = new File("./src/resouces/Bottle Cork.wav");
+   private File sound2 = new File("./src/resouces/Dit Hit.wav");
+   private File sound3 = new File("./src/resouces/Whistle.wav");
+   private File sound4 = new File("./src/resouces/Empty Trash.wav");
+   private File sound5 = new File("./src/resouces/Check.wav");
+   private String background1 = "./src/resouces/background1.jpg";
+   private String background2 = "./src/resouces/background2.jpg";
 	
-	@FXML
+    @FXML
     private Button ButtonDelete;
-	@FXML
-	private Button ButtonDeleteAll;
+    @FXML
+    private Button ButtonDeleteAll;
     @FXML
     private Button ButtonNew;
     @FXML
@@ -74,9 +74,9 @@ public class Controller {
     @FXML
     private Button ButtonSaveAs;
     @FXML
-	private TextArea textarea;
+    private TextArea textarea;
     @FXML
-	private ListView<String> listview;
+    private ListView<String> listview;
     @FXML
     private Label label1;
     @FXML
@@ -121,27 +121,27 @@ public class Controller {
     // methods that load file and write file
     //---------------------------------------------------------------
     public void loadFile() throws FileNotFoundException {
-		taskList.clear();
-		Scanner scan = new Scanner(file);
-		while (scan.hasNextLine()) {
-			String list[];
-			list = scan.nextLine().split(",");
-			Task task = new Task(list[0], list[1], list[2], list[3].replace("NEXTLINE", "\n").replace("ACOMMA", ","), list[4], Boolean.parseBoolean(list[5]));
-			taskList.add(task);	
-		}
-		listview.getItems().clear();
-		for (int i=0; i<taskList.size(); i++) {
-			listview.getItems().add(taskList.get(i).getName()+ "        " +taskList.get(i).getDueDate());
-			listview.setStyle("-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS';");
-		}
-		scan.close();
+	taskList.clear();
+	Scanner scan = new Scanner(file);
+	while (scan.hasNextLine()) {
+		String list[];
+		list = scan.nextLine().split(",");
+		Task task = new Task(list[0], list[1], list[2], list[3].replace("NEXTLINE", "\n").replace("ACOMMA", ","), list[4], Boolean.parseBoolean(list[5]));
+		taskList.add(task);	
+	}
+	listview.getItems().clear();
+	for (int i=0; i<taskList.size(); i++) {
+		listview.getItems().add(taskList.get(i).getName()+ "        " +taskList.get(i).getDueDate());
+		listview.setStyle("-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS';");
+	}
+	scan.close();
     }
     public void writeFile() throws FileNotFoundException {
-		PrintWriter writer = new PrintWriter(fileName);
-		for(Task task: taskList) {
-			writer.println(task.toString());
-		}
-		writer.close();
+	PrintWriter writer = new PrintWriter(fileName);
+	for(Task task: taskList) {
+		writer.println(task.toString());
+	}
+	writer.close();
     }
 
     
@@ -151,38 +151,39 @@ public class Controller {
     // those are the Buttons methods
     //---------------------------------------------------------------
     public void ProcessNew(ActionEvent event) throws Exception {
-    	SoundEffects.playSound(sound1);
-		HBox boxH = new HBox();
-		boxH.setSpacing(20);
-		boxH.setAlignment(Pos.CENTER);
-		VBox boxV = new VBox();
-		boxV.setSpacing(20);
-		boxV.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(boxV,800,400);
-		
-		// this is for creating the name
-		Text hintName = new Text("Task Name:");
-		hintName.setFont(new Font("Comic Sans MS", 14));
-		TextField textName = new TextField();
-		textName.setFont(new Font("Comic Sans MS", 14));
-		textName.setPrefWidth(180);
-		VBox boxVname = new VBox(hintName, textName);
-		boxVname.setSpacing(5);
-		//*******************************
-		
-		// this is for picking a date
-		Text hintpicker = new Text("Pick a Date");
-		hintpicker.setFont(new Font("Comic Sans MS", 14));
-		DatePicker datepicker = new DatePicker(LocalDate.now());
-		datepicker.setMaxWidth(120);
-		VBox boxVpicker = new VBox(hintpicker, datepicker);
-		boxVpicker.setSpacing(5);
-		//*******************************
-		
-		//this is for picking an hour
-		Text hintspinnerHour = new Text("Hour");
-		hintspinnerHour.setFont(new Font("Comic Sans MS", 14));
-		ObservableList<String> listA = FXCollections.observableArrayList();
+	    
+	SoundEffects.playSound(sound1);
+	HBox boxH = new HBox();
+	boxH.setSpacing(20);
+	boxH.setAlignment(Pos.CENTER);
+	VBox boxV = new VBox();
+	boxV.setSpacing(20);
+	boxV.setAlignment(Pos.CENTER);
+	Scene scene = new Scene(boxV,800,400);
+
+	// this is for creating the name
+	Text hintName = new Text("Task Name:");
+	hintName.setFont(new Font("Comic Sans MS", 14));
+	TextField textName = new TextField();
+	textName.setFont(new Font("Comic Sans MS", 14));
+	textName.setPrefWidth(180);
+	VBox boxVname = new VBox(hintName, textName);
+	boxVname.setSpacing(5);
+	//*******************************
+
+	// this is for picking a date
+	Text hintpicker = new Text("Pick a Date");
+	hintpicker.setFont(new Font("Comic Sans MS", 14));
+	DatePicker datepicker = new DatePicker(LocalDate.now());
+	datepicker.setMaxWidth(120);
+	VBox boxVpicker = new VBox(hintpicker, datepicker);
+	boxVpicker.setSpacing(5);
+	//*******************************
+
+	//this is for picking an hour
+	Text hintspinnerHour = new Text("Hour");
+	hintspinnerHour.setFont(new Font("Comic Sans MS", 14));
+	ObservableList<String> listA = FXCollections.observableArrayList();
         listA.addAll("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23");
         spinnerA = new Spinner<String>(listA);
         spinnerA.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
@@ -190,12 +191,12 @@ public class Controller {
         spinnerA.getValueFactory().setWrapAround(true);
         spinnerA.getValueFactory().setValue(LocalTime.now().toString().substring(0, 2));
         VBox boxVspinnerHour = new VBox(hintspinnerHour, spinnerA);
-		boxVspinnerHour.setSpacing(5);
+	boxVspinnerHour.setSpacing(5);
         //*******************************
         
-		//this is for picking a minutes
-		Text hintspinnerMinute = new Text("Minute");
-		hintspinnerMinute.setFont(new Font("Comic Sans MS", 14));
+	//this is for picking a minutes
+	Text hintspinnerMinute = new Text("Minute");
+	hintspinnerMinute.setFont(new Font("Comic Sans MS", 14));
         ObservableList<String> listB = FXCollections.observableArrayList();
         listB.addAll("00","01","02","03","04","05","06","07","08","09");
         for (int i = 10; i<=59; i++) {
@@ -207,12 +208,12 @@ public class Controller {
         spinnerB.getValueFactory().setWrapAround(true);
         spinnerB.getValueFactory().setValue(LocalTime.now().toString().substring(3, 5));
         VBox boxVspinnerMinute = new VBox(hintspinnerMinute, spinnerB);
-		boxVspinnerMinute.setSpacing(5);
+	boxVspinnerMinute.setSpacing(5);
         //*******************************
          
-		//this is for picking a Priority Level
-		Text hintspinnerPriority = new Text("Priority Level");
-		hintspinnerPriority.setFont(new Font("Comic Sans MS", 14));
+	//this is for picking a Priority Level
+	Text hintspinnerPriority = new Text("Priority Level");
+	hintspinnerPriority.setFont(new Font("Comic Sans MS", 14));
         ObservableList<String> listC = FXCollections.observableArrayList();
         listC.addAll("None", "Low", "Medium", "High");
         spinnerC = new Spinner<String>(listC);
@@ -224,82 +225,81 @@ public class Controller {
         //*******************************
 
         // this is a textArea
-		TextArea textDetails = new TextArea();
-		textDetails.setMaxWidth(650);
-		textDetails.setFont(new Font("Comic Sans MS", 14));
-		textDetails.setPromptText("Details");
-		//*******************************
-		
-		// these are two buttons
-		Button buttonCancel = new Button("Cancel");
-		buttonCancel.setFont(new Font("Comic Sans MS", 14));
-		Button buttonAdd = new Button("Add");	
-		HBox boxH2 = new HBox(buttonCancel, buttonAdd);
-		buttonAdd.setFont(new Font("Comic Sans MS", 14));
-		buttonAdd.setStyle("-fx-text-fill: #6cb562; -fx-background-radius: 30px");
-		boxH2.setSpacing(550);
-		boxH2.setAlignment(Pos.CENTER);
-		//*******************************
-		
-		
-		boxH.getChildren().addAll(boxVname, boxVpicker, boxVspinnerHour, boxVspinnerMinute, boxVspinnerPriority);
-		boxV.getChildren().addAll(boxH, textDetails, boxH2);
-		boxV.setBackground(BackgroundImages.getBackground(background1));
-		
-		Stage window = new Stage();
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("New Task");
-		window.setScene(scene);
-		window.setResizable(false);
-		window.show();
+	TextArea textDetails = new TextArea();
+	textDetails.setMaxWidth(650);
+	textDetails.setFont(new Font("Comic Sans MS", 14));
+	textDetails.setPromptText("Details");
+	//*******************************
 
-		buttonCancel.setOnAction(e -> {
-			window.close();
-		});
-		
-		buttonAdd.setOnAction(e -> {
-			// play the sound when the button is clicked
-			try {
-				SoundEffects.playSound(sound1);
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-			// get the value from user
-			strName = textName.getText();
-			date = datepicker.getValue();
-			strDetails = textDetails.getText();
-			priorityLevel = spinnerC.getValue();
-			
-			// create a time string for add to the list view
-			// create a time string with only integers
-			String time = spinnerA.getValue() + ":"+ spinnerB.getValue() + " " +date.getDayOfWeek()+" "+date.getMonth()+" "+date.getDayOfMonth();
-			String timeInt = date.toString().replace("-", "")+spinnerA.getValue()+spinnerB.getValue();
-			// create a task object and add it to the taskList
-			Task task = new Task(strName, time, timeInt, strDetails, priorityLevel, false);
-			taskList.add(task);
-			// add every task in taskList to the list view
-			listview.getItems().clear();
-			for (int i=0; i<taskList.size(); i++) {
-				listview.getItems().add(taskList.get(i).getName()+ "        " +taskList.get(i).getDueDate());
-				listview.setStyle("-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS';");
-			}
-			// write the task in the file 
-			try {
-				writeFile();
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			window.close();
-		});
+	// these are two buttons
+	Button buttonCancel = new Button("Cancel");
+	buttonCancel.setFont(new Font("Comic Sans MS", 14));
+	Button buttonAdd = new Button("Add");	
+	HBox boxH2 = new HBox(buttonCancel, buttonAdd);
+	buttonAdd.setFont(new Font("Comic Sans MS", 14));
+	buttonAdd.setStyle("-fx-text-fill: #6cb562; -fx-background-radius: 30px");
+	boxH2.setSpacing(550);
+	boxH2.setAlignment(Pos.CENTER);
+	//*******************************
+
+
+	boxH.getChildren().addAll(boxVname, boxVpicker, boxVspinnerHour, boxVspinnerMinute, boxVspinnerPriority);
+	boxV.getChildren().addAll(boxH, textDetails, boxH2);
+	boxV.setBackground(BackgroundImages.getBackground(background1));
+
+	Stage window = new Stage();
+	window.initModality(Modality.APPLICATION_MODAL);
+	window.setTitle("New Task");
+	window.setScene(scene);
+	window.setResizable(false);
+	window.show();
+
+	buttonCancel.setOnAction(e -> {
+		window.close();
+	});
+
+	buttonAdd.setOnAction(e -> {
+		// play the sound when the button is clicked
+		try {
+			SoundEffects.playSound(sound1);
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		// get the value from user
+		strName = textName.getText();
+		date = datepicker.getValue();
+		strDetails = textDetails.getText();
+		priorityLevel = spinnerC.getValue();
+
+		// create a time string for add to the list view
+		// create a time string with only integers
+		String time = spinnerA.getValue() + ":"+ spinnerB.getValue() + " " +date.getDayOfWeek()+" "+date.getMonth()+" "+date.getDayOfMonth();
+		String timeInt = date.toString().replace("-", "")+spinnerA.getValue()+spinnerB.getValue();
+		// create a task object and add it to the taskList
+		Task task = new Task(strName, time, timeInt, strDetails, priorityLevel, false);
+		taskList.add(task);
+		// add every task in taskList to the list view
+		listview.getItems().clear();
+		for (int i=0; i<taskList.size(); i++) {
+			listview.getItems().add(taskList.get(i).getName()+ "        " +taskList.get(i).getDueDate());
+			listview.setStyle("-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS';");
+		}
+		// write the task in the file 
+		try {
+			writeFile();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		window.close();
+	});
     	
-   
     }
     @FXML
     public void ProcessUpdate(ActionEvent event) throws Exception {
     	SoundEffects.playSound(sound1);
     	if (listview.getSelectionModel().isEmpty() == false) {
     		// get the indext of listed item
-    		int num = listview.getSelectionModel().getSelectedIndex();
+		int num = listview.getSelectionModel().getSelectedIndex();
     	
     		HBox boxH = new HBox();
     		boxH.setSpacing(20);
@@ -335,48 +335,48 @@ public class Controller {
     		Text hintspinnerHour = new Text("Hour");
     		hintspinnerHour.setFont(new Font("Comic Sans MS", 14));
     		ObservableList<String> listA = FXCollections.observableArrayList();
-            listA.addAll("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23");
-            spinnerA = new Spinner<String>(listA);
-            spinnerA.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
-            spinnerA.setMaxWidth(80);
-            spinnerA.getValueFactory().setValue(ParseTimeIntTimeH(taskList.get(num)));
-            spinnerA.getValueFactory().setWrapAround(true);
-            VBox boxVspinnerHour = new VBox(hintspinnerHour, spinnerA);
+	        listA.addAll("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23");
+	   	spinnerA = new Spinner<String>(listA);
+	    	spinnerA.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
+	    	spinnerA.setMaxWidth(80);
+	    	spinnerA.getValueFactory().setValue(ParseTimeIntTimeH(taskList.get(num)));
+	    	spinnerA.getValueFactory().setWrapAround(true);
+	    	VBox boxVspinnerHour = new VBox(hintspinnerHour, spinnerA);
     		boxVspinnerHour.setSpacing(5);
-            //*******************************
+            	//*******************************
             
     		//this is for picking a minutes
     		Text hintspinnerMinute = new Text("Minute");
     		hintspinnerMinute.setFont(new Font("Comic Sans MS", 14));
-            ObservableList<String> listB = FXCollections.observableArrayList();
-            listB.addAll("00","01","02","03","04","05","06","07","08","09");
-            for (int i = 10; i<=59; i++) {
-            	listB.add(i+"");
-            }
-            spinnerB = new Spinner<String>(listB);
-            spinnerB.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
-            spinnerB.setMaxWidth(80);
-            spinnerB.getValueFactory().setValue(ParseTimeIntTimeM(taskList.get(num)));
-            spinnerB.getValueFactory().setWrapAround(true);
-            VBox boxVspinnerMinute = new VBox(hintspinnerMinute, spinnerB);
+            	ObservableList<String> listB = FXCollections.observableArrayList();
+            	listB.addAll("00","01","02","03","04","05","06","07","08","09");
+            	for (int i = 10; i<=59; i++) {
+            		listB.add(i+"");
+           	}
+            	spinnerB = new Spinner<String>(listB);
+            	spinnerB.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
+            	spinnerB.setMaxWidth(80);
+            	spinnerB.getValueFactory().setValue(ParseTimeIntTimeM(taskList.get(num)));
+           	spinnerB.getValueFactory().setWrapAround(true);
+           	VBox boxVspinnerMinute = new VBox(hintspinnerMinute, spinnerB);
     		boxVspinnerMinute.setSpacing(5);
-            //*******************************
+            	//*******************************
              
     		//this is for picking a Priority Level
     		Text hintspinnerPriority = new Text("Priority Level");
     		hintspinnerPriority.setFont(new Font("Comic Sans MS", 14));
-            ObservableList<String> listC = FXCollections.observableArrayList();
-            listC.addAll("None", "Low", "Medium", "High");
-            spinnerC = new Spinner<String>(listC);
-            spinnerC.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
-            spinnerC.setMaxWidth(110);
-            spinnerC.getValueFactory().setValue(taskList.get(num).getPriority());
-            spinnerC.getValueFactory().setWrapAround(true);
-            VBox boxVspinnerPriority = new VBox(hintspinnerPriority, spinnerC);
-            boxVspinnerPriority.setSpacing(5);
-            //*******************************
+            	ObservableList<String> listC = FXCollections.observableArrayList();
+            	listC.addAll("None", "Low", "Medium", "High");
+            	spinnerC = new Spinner<String>(listC);
+            	spinnerC.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
+            	spinnerC.setMaxWidth(110);
+            	spinnerC.getValueFactory().setValue(taskList.get(num).getPriority());
+            	spinnerC.getValueFactory().setWrapAround(true);
+            	VBox boxVspinnerPriority = new VBox(hintspinnerPriority, spinnerC);
+            	boxVspinnerPriority.setSpacing(5);
+            	//*******************************
 
-            // this is a textArea
+            	// this is a textArea
     		TextArea textDetails = new TextArea();
     		textDetails.setMaxWidth(650);
     		textDetails.setFont(new Font("Comic Sans MS", 14));
@@ -699,4 +699,5 @@ public class Controller {
 	public String ParseTimeIntTimeM(Task t) {
 		String TimeH = t.getTimeLong().substring(10, 12);
 		return TimeH;
-	}}
+	}
+}
